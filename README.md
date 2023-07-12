@@ -4,12 +4,12 @@ Apache .htaccess file security config
 ## Contents
 
 ### No Directory Index
-```
+```apache
 Options -Indexes
 ```
 
 ### .htaccess File Protection
-```
+```apache
 <files ".htaccess">
     order allow,deny
     deny from all
@@ -17,7 +17,7 @@ Options -Indexes
 ```
 
 ### .htaccess File Strong Protection
-```
+```apache
 <Files ~ "^.*\.([Hh][Tt][Aa])">
     order allow,deny
     deny from all
@@ -26,7 +26,7 @@ Options -Indexes
 ```
 
 ### LFI Bugs Patch
-```
+```apache
 <IfModule mod_rewrite.c>
     RewriteCond %{QUERY_STRING} \=(\.\./\.\.//?)+ [OR]
     RewriteCond %{QUERY_STRING} \=(\.\.//\./?)+ [OR]
@@ -38,7 +38,7 @@ Options -Indexes
 ```
 
 ### XSS Bugs Patch
-```
+```apache
 <IfModule mod_rewrite.c>
     RewriteCond %{QUERY_STRING} base64_encode.*\(.*\) [OR]
     RewriteCond %{QUERY_STRING} (\<|%3C).*script.*(\>|%3E) [NC,OR]
@@ -52,7 +52,7 @@ Options -Indexes
 ```
 
 ### SQL Bugs Patch
-```
+```apache
 <IfModule mod_rewrite.c>
     RewriteCond %{QUERY_STRING} union([^a]*a)+ll([^s]*s)+elect [NC,OR]
     RewriteCond %{QUERY_STRING} (order).*(by).*(\%[0-9A-Z]{0,2}) [NC,OR]
@@ -70,7 +70,7 @@ Options -Indexes
 ```
 
 ### Anti Shell
-```
+```apache
 <IfModule mod_rewrite.c>
     RewriteCond %{REQUEST_URI} .*((php|my)?shell|remview.*|phpremoteview.*|sshphp.*|pcom|nstview.*|c99|r57|b37|alfa|c100|x666|webadmin.*|phpget.*|phpwriter.*|fileditor.*|locus7.*|storm7.*)\.(p?s?x?htm?l?|txt|aspx?|cfml?|cgi|pl|php[3-9]{0,1}|jsp?|sql|xml) [NC,OR]
     RewriteCond %{REQUEST_METHOD} (GET|POST) [NC]
@@ -88,7 +88,7 @@ Options -Indexes
 ```
 
 ### Anti .pl .py .cgi
-```
+```apache
 <IfModule mod_rewrite.c>
     RemoveHandler cgi-script .pl .py .cgi
     AddType text/plain .pl .py .cgi
@@ -96,7 +96,7 @@ Options -Indexes
 ```
 
 ### Anti Scanner
-```
+```apache
 RewriteEngine On
 <IfModule mod_rewrite.c>
     RewriteCond %{HTTP_USER_AGENT} ^w3af.sourceforge.net [NC,OR]
@@ -116,14 +116,14 @@ RewriteEngine On
 </IfModule>
 ```
 
-### Anti DDoS (Fixed: CVE-2011-3192)
-```
+### Anti DDoS (CVE-2011-3192)
+```apache
 SetEnvIf Range (,.*?){5,} bad-range=1
 RequestHeader unset Range env=bad-range
 ```
 
 ### Anti JavaScript
-```
+```apache
 Header set X-Content-Security-Policy "allow 'self';"
 ```
 
