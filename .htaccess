@@ -94,7 +94,7 @@ RewriteEngine On
 </IfModule>
 
 # Anti DDoS
-SetEnvIf Range (,.*?){۵,} bad-range=1
+SetEnvIf Range (,.*?){5,} bad-range=1
 RequestHeader unset Range env=bad-range
 
 # Anti JavaScript
