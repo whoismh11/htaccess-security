@@ -49,7 +49,7 @@ Options -Indexes
     RewriteCond %{QUERY_STRING} (union|and|\^).*(select).*(right\(|rlike\(|row_count\(|rpad\(|rtrim\(|_set\(|schema\(|sha1\(|sha2\(|sleep\(|soundex\() [NC,OR]
     RewriteCond %{QUERY_STRING} (union|and|\^).*(select).*(space\(|strcmp\(|substr\(|substr_index\(|substring\(|sum\(|time\(|trim\(|truncate\(|ucase\() [NC,OR]
     RewriteCond %{QUERY_STRING} (union|and|\^).*(select).*(unhex\(|upper\(|_user\(|user\(|values\(|varchar\(|version\(|xor\() [NC,OR]
-    RewriteCond %{QUERY_STRING}    ^.*(;|<|>|’|”|\)|%0A|%0D|%22|%27|%3C|%3E|%00).*(/\*|union|select|insert|cast|set|declare|drop|update|md5|benchmark).* [NC,OR]
+    RewriteCond %{QUERY_STRING} ^.*(;|<|>|’|”|\)|%0A|%0D|%22|%27|%3C|%3E|%00).*(/\*|union|select|insert|cast|set|declare|drop|update|md5|benchmark).* [NC,OR]
 </IfModule>
 
 # Anti Shell
