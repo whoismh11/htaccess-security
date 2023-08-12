@@ -127,5 +127,8 @@ RequestHeader unset Range env=bad-range
 Header set X-Content-Security-Policy "allow 'self';"
 ```
 
+## See also
+- [6G Firewall](https://perishablepress.com/6g)
+
 ## Contribution
 - [Discord](https://discord.gg/2JjvhAk)
